@@ -32,13 +32,23 @@ public class SecondActivity extends AppCompatActivity {
             layout.addView(button);
         }
 
+        Button buttonAddTopic = findViewById(R.id.buttonAddTopic);
+        buttonAddTopic.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                goToFourthActivity();
+            }
+        });
+
     }
 
     private void goToThirdActivity(String title) {
-
         Intent intent = new Intent(this, ThridActivity.class);
         intent.putExtra("Title", title);
         startActivity(intent);
+    }
 
+    private void goToFourthActivity(){
+        Intent intent = new Intent(this, FourthActivity.class);
+        startActivity(intent);
     }
 }
