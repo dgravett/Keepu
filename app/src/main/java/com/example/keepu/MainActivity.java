@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,8 +19,17 @@ public class MainActivity extends AppCompatActivity {
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                goToSecondActivity();
+                EditText textInputUsername = findViewById(R.id.textInputUsername);
+                String usernameInput = textInputUsername.getText().toString();
+                EditText textInputPassword = findViewById(R.id.textInputPassword);
+                String passwordInput = textInputPassword.getText().toString();
 
+                if(usernameInput.equals("admin") && passwordInput.equals("password")){
+                    goToSecondActivity();
+                }else{
+                    TextView incorrectLogin = findViewById(R.id.textViewIncorrectLogin);
+                    incorrectLogin.setVisibility(View.VISIBLE);
+                }
             }
 
         });
