@@ -9,16 +9,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.EditText;
 
-public class ThridActivity extends AppCompatActivity {
+public class ThirdActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_thrid);
+        setContentView(R.layout.activity_third);
 
         drawerLayout = findViewById(R.id.drawer_layout);
         Intent intent = getIntent();

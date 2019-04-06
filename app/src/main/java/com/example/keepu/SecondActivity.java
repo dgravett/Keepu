@@ -87,7 +87,7 @@ public class SecondActivity extends AppCompatActivity {
     }
 
     private void goToThirdActivity(String title) {
-        Intent intent = new Intent(this, ThridActivity.class);
+        Intent intent = new Intent(this, ThirdActivity.class);
         intent.putExtra("Title", title);
         startActivity(intent);
     }
