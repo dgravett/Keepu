@@ -51,24 +51,21 @@ public class SecondActivity extends AppCompatActivity {
                     }
                 });
 
-        final String[] textArray = {"Human Trafficking", "Animal Shelter", "Soup Kitchen", "Orphanage"};
+        final String[] textArray = {"Human Trafficking"};
 
         LinearLayout layout = findViewById(R.id.linearLayout);
 
-        for(int i = 0; i < textArray.length; i++) {
-            Button button = new Button(this);
-            button.setText(textArray[i]);
+        Button button = new Button(this);
+        button.setText(textArray[0]);
 
-            button.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    Button b = (Button)v;
-                    goToThirdActivity(b.getText().toString());
-                }
-            });
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Button b = (Button)v;
+                goToThirdActivity(b.getText().toString());
+            }
+        });
 
-            layout.addView(button);
-        }
-
+        layout.addView(button);
     }
 
     @Override
