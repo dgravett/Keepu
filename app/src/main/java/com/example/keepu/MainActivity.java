@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         textInputUsername = findViewById(R.id.textInputUsername);
         textInputPassword = findViewById(R.id.textInputPassword);
         incorrectLogin = findViewById(R.id.textViewIncorrectLogin);
+        incorrectLogin.setVisibility(View.VISIBLE);
         this.context = this;
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -108,8 +109,7 @@ public class MainActivity extends AppCompatActivity {
                                 Log.e("Volley", "Invalid JSON Object.");
                             }
                         } else {
-                            incorrectLogin.setText("Incorrect username or password");
-                            incorrectLogin.setVisibility(View.VISIBLE);
+
                         }
 
                     }
@@ -117,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        incorrectLogin.setText("Incorrect username or password");
+                        incorrectLogin.setVisibility(View.VISIBLE);
                         Log.e("Volley", error.toString());
                     }
                 }

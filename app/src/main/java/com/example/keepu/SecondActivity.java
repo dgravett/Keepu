@@ -51,6 +51,8 @@ public class SecondActivity extends AppCompatActivity {
                     }
                 });
 
+        final Intent intent = getIntent();
+
         final String[] textArray = {"Human Trafficking"};
 
         LinearLayout layout = findViewById(R.id.linearLayout);
@@ -61,7 +63,7 @@ public class SecondActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Button b = (Button)v;
-                goToThirdActivity(b.getText().toString());
+                goToThirdActivity(b.getText().toString(), intent.getStringExtra("user_id"));
             }
         });
 
@@ -83,9 +85,10 @@ public class SecondActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void goToThirdActivity(String title) {
+    private void goToThirdActivity(String title, String user_id) {
         Intent intent = new Intent(this, ThirdActivity.class);
         intent.putExtra("Title", title);
+        intent.putExtra("user_id", user_id);
         startActivity(intent);
     }
 
