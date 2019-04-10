@@ -1,5 +1,6 @@
 package com.example.keepu;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.android.volley.RequestQueue;
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     Button loginButton;
     TextView incorrectLogin;
     RequestQueue requestQueue;
+    Context context;
 
     String url;
 
@@ -42,8 +45,7 @@ public class MainActivity extends AppCompatActivity {
         textInputUsername = findViewById(R.id.textInputUsername);
         textInputPassword = findViewById(R.id.textInputPassword);
         incorrectLogin = findViewById(R.id.textViewIncorrectLogin);
-
-        requestQueue = Volley.newRequestQueue(this);
+        this.context = this;
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -79,8 +81,9 @@ public class MainActivity extends AppCompatActivity {
 
     //Calls the API to test the login
     private void checkLogin(String username, String password){
+        this.url = "https://keepuapp.herokuapp.com/api/users/login";
 
-        this.url = "keepu.azurewebsites.net/api/users/login";
+        requestQueue = Volley.newRequestQueue(this.context);
 
         JSONObject body = new JSONObject();
 
@@ -91,14 +94,15 @@ public class MainActivity extends AppCompatActivity {
             Log.e("Keepu", "Invalid JSON Object.", e);
         }
 
+        System.out.println(body.toString());
+
         CustomJsonArrayRequest req = new CustomJsonArrayRequest(Request.Method.POST, url, body,
-                new Response.Listener<JSONArray>() {
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(JSONObject response) {
                         if (response.length() > 0) {
                             try {
-                                JSONObject jsonObj = response.getJSONObject(0);
-                                String user_id = jsonObj.get("_id").toString();
+                                String user_id = response.get("_id").toString();
                                 goToSecondActivity(user_id);
                             } catch (JSONException e) {
                                 Log.e("Volley", "Invalid JSON Object.");
@@ -117,6 +121,23 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
+
+        req.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+
+            }
+        });
 
         requestQueue.add(req);
     }

@@ -12,7 +12,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 
-public class CustomJsonArrayRequest extends JsonRequest<JSONArray> {
+public class CustomJsonArrayRequest extends JsonRequest<JSONObject> {
 
     /**
      * Creates a new request.
@@ -24,17 +24,17 @@ public class CustomJsonArrayRequest extends JsonRequest<JSONArray> {
      * @param errorListener Error listener, or null to ignore errors.
      */
     public CustomJsonArrayRequest(int method, String url, JSONObject jsonRequest,
-                                  Response.Listener<JSONArray> listener, Response.ErrorListener errorListener) {
+                                  Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
         super(method, url, (jsonRequest == null) ? null : jsonRequest.toString(), listener,
                 errorListener);
     }
 
     @Override
-    protected Response<JSONArray> parseNetworkResponse(NetworkResponse response) {
+    protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
         try {
             String jsonString = new String(response.data,
                     HttpHeaderParser.parseCharset(response.headers, PROTOCOL_CHARSET));
-            return Response.success(new JSONArray(jsonString),
+            return Response.success(new JSONObject(jsonString),
                     HttpHeaderParser.parseCacheHeaders(response));
         } catch (UnsupportedEncodingException e) {
             return Response.error(new ParseError(e));
