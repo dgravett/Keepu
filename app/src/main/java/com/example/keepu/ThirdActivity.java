@@ -57,6 +57,10 @@ public class ThirdActivity extends AppCompatActivity {
     TextView textViewOutput;
     TextView textViewOutcomeTitle;
     TextView textViewOutcome;
+    TextView textViewFlowchartInput;
+    TextView textViewFlowchartActivities;
+    TextView textViewFlowchartOutputs;
+    TextView textViewFLowchartOutcomes;
     RequestQueue requestQueue;
     Context context;
     String url;
@@ -93,6 +97,10 @@ public class ThirdActivity extends AppCompatActivity {
         textViewOutput = findViewById(R.id.textViewOutput);
         textViewOutcomeTitle = findViewById(R.id.textViewOutcomeTitle);
         textViewOutcome = findViewById(R.id.textViewOutcome);
+        textViewFlowchartInput = findViewById(R.id.textViewFlowchartInput);
+        textViewFlowchartActivities = findViewById(R.id.textViewFlowchartActivities);
+        textViewFlowchartOutputs = findViewById(R.id.textViewFlowchartOutputs);
+        textViewFLowchartOutcomes = findViewById(R.id.textViewFlowchartOutcomes);
 
         Intent intent = getIntent();
 
@@ -251,6 +259,29 @@ public class ThirdActivity extends AppCompatActivity {
                                     textViewQuestion18c.setVisibility(View.VISIBLE);
                                 }
 
+                                String flowchartInput = "";
+                                if(question4[0].equals("true")) flowchartInput += " - Computers\n";
+                                if(question4[1].equals("true")) flowchartInput += " - Tablets\n";
+                                if(question4[2].equals("true")) flowchartInput += " - Office Phones\n";
+
+                                if(question5[0].equals("true")) flowchartInput += " - Office Space\n";
+                                if(question5[1].equals("true")) flowchartInput += " - Event Space\n";
+                                if(question5[2].equals("true")) flowchartInput += " - Training Space\n";
+
+                                if(question7[0].equals("true")) flowchartInput += " - Program Manager\n";
+                                if(question7[1].equals("true")) flowchartInput += " - Training Specialist\n";
+                                if(question7[2].equals("true")) flowchartInput += " - Case Worker\n";
+                                if(question7[3].equals("true")) flowchartInput += " - Community Educator\n";
+
+                                textViewFlowchartInput.setText(flowchartInput);
+
+                                String flowchartActivities = "";
+                                if(question18[0].equals("true")) flowchartActivities += " - Identify Law enforcement agencies\n";
+                                if(question18[1].equals("true")) flowchartActivities += " - Identify human trafficking prevention service providers\n";
+                                if(question18[2].equals("true")) flowchartActivities += " - Identify potential trainers on human trafficking warning signs";
+
+                                textViewFlowchartActivities.setText(flowchartActivities);
+
                             } catch (JSONException e) {
                                 Log.e("Volley", "Invalid JSON Object.");
                             }
@@ -318,7 +349,16 @@ public class ThirdActivity extends AppCompatActivity {
 
                                 if(!question1.equals("null")){
                                     textViewOutputTitle.setVisibility(View.VISIBLE);
-                                    textViewOutput.setText("  - " + question1 + " " + question2 + " will " + question3 + " in " + question4 + " " + question5 + " " + question6);
+                                    String text = "";
+                                    if(question2.equals("Law enforcement")){
+                                        text = "  - " + question1 + " " + question2 + " staff will " + question3.toLowerCase() + " " + question4.toLowerCase() + " " + question5 + " " + question6 + ".";
+                                    }else if(question2.equals("Victims of human trafficking")){
+                                        text = "  - " + question1 + " staffers will assist " + question2 + " to " + question3.toLowerCase() + " in " + question4.toLowerCase() + " " + question5 + " " + question6 + ".";
+                                    }else if(question2.equals("Services provided")){
+                                        text = "  - " + question1 + " staffers will " + question3.toLowerCase() + " in " + question4.toLowerCase() + " " + question5 + " " + question6;
+                                    }
+                                    textViewOutput.setText(text);
+                                    textViewFlowchartOutputs.setText(text);
                                     textViewOutput.setVisibility(View.VISIBLE);
                                 }
 
@@ -329,8 +369,10 @@ public class ThirdActivity extends AppCompatActivity {
                                 String question11 = response.getJSONObject(0).get("q11").toString();
 
                                 if(!question7.equals("null")){
+                                    String text = "  - " + question7 + " " + question8 + " will " + question9.toLowerCase() + " " + question10 + " " + question11;
                                     textViewOutcomeTitle.setVisibility(View.VISIBLE);
-                                    textViewOutcome.setText("  - " + question7 + " " + question8 + " will " + question9 + " " + question10 + " " + question11);
+                                    textViewOutcome.setText(text);
+                                    textViewFLowchartOutcomes.setText(text);
                                     textViewOutcome.setVisibility(View.VISIBLE);
                                 }
 
