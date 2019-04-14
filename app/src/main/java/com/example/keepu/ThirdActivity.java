@@ -318,7 +318,7 @@ public class ThirdActivity extends AppCompatActivity {
 
                                 if(!question1.equals("null")){
                                     textViewOutputTitle.setVisibility(View.VISIBLE);
-                                    textViewOutput.setText("  -" + question1 + " " + question2 + " will " + question3 + " in " + question4 + " " + question5 + " " + question6);
+                                    textViewOutput.setText("  - " + question1 + " " + question2 + " will " + question3 + " in " + question4 + " " + question5 + " " + question6);
                                     textViewOutput.setVisibility(View.VISIBLE);
                                 }
 
@@ -330,7 +330,7 @@ public class ThirdActivity extends AppCompatActivity {
 
                                 if(!question7.equals("null")){
                                     textViewOutcomeTitle.setVisibility(View.VISIBLE);
-                                    textViewOutcome.setText("  -" + question7 + " " + question8 + " will " + question9 + " " + question10 + " " + question11);
+                                    textViewOutcome.setText("  - " + question7 + " " + question8 + " will " + question9 + " " + question10 + " " + question11);
                                     textViewOutcome.setVisibility(View.VISIBLE);
                                 }
 
