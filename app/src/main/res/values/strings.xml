@@ -6,4 +6,9 @@
     <string name="login_button">LOG IN</string>
     <string name="logout">Logout</string>
     <string name="home">Home</string>
+    <string name="question1a">Provide comprehensive short term services to victims of human trafficking</string>
+    <string name="question1b">Promote collaboration and coordination of services</string>
+    <string name="question1c">Provide trainings on human trafficking victims topics</string>
+    <string name="question1d">Create awareness about human traffic</string>
+    <string name="question1e">Provide trainings on human trafficking victims topics</string>
 </resources>

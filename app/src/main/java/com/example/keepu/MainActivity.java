@@ -17,12 +17,10 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.regex.Pattern;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         textInputUsername = findViewById(R.id.textInputUsername);
         textInputPassword = findViewById(R.id.textInputPassword);
         incorrectLogin = findViewById(R.id.textViewIncorrectLogin);
-        incorrectLogin.setVisibility(View.VISIBLE);
         this.context = this;
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -103,8 +100,13 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         if (response.length() > 0) {
                             try {
-                                String user_id = response.get("_id").toString();
-                                goToSecondActivity(user_id);
+                                if(!response.get("email").toString().isEmpty()) {
+                                    String user_id = response.get("_id").toString();
+                                    goToSecondActivity(user_id);
+                                }else{
+                                    incorrectLogin.setText("Incorrect username or password");
+                                    incorrectLogin.setVisibility(View.VISIBLE);
+                                }
                             } catch (JSONException e) {
                                 Log.e("Volley", "Invalid JSON Object.");
                             }
@@ -117,8 +119,6 @@ public class MainActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        incorrectLogin.setText("Incorrect username or password");
-                        incorrectLogin.setVisibility(View.VISIBLE);
                         Log.e("Volley", error.toString());
                     }
                 }
