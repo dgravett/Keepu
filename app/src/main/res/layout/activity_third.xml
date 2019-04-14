@@ -24,6 +24,11 @@
                 android:background="?attr/colorPrimary"
                 android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
             <TextView
                 android:id="@+id/textViewKnot1"
                 android:layout_width="match_parent"
@@ -268,7 +273,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="  Outputs"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/textViewOutput"
@@ -282,7 +288,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="  Outcomes"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/textViewOutcome"

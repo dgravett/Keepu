@@ -53,11 +53,13 @@ public class ThirdActivity extends AppCompatActivity {
     TextView textViewQuestion18a;
     TextView textViewQuestion18b;
     TextView textViewQuestion18c;
+    TextView textViewOutputTitle;
     TextView textViewOutput;
+    TextView textViewOutcomeTitle;
     TextView textViewOutcome;
     RequestQueue requestQueue;
     Context context;
-    String url, url2;
+    String url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +89,9 @@ public class ThirdActivity extends AppCompatActivity {
         textViewQuestion18a = findViewById(R.id.textViewQuestion18a);
         textViewQuestion18b = findViewById(R.id.textViewQuestion18b);
         textViewQuestion18c = findViewById(R.id.textViewQuestion18c);
+        textViewOutputTitle = findViewById(R.id.textViewOutputTitle);
         textViewOutput = findViewById(R.id.textViewOutput);
+        textViewOutcomeTitle = findViewById(R.id.textViewOutcomeTitle);
         textViewOutcome = findViewById(R.id.textViewOutcome);
 
         Intent intent = getIntent();
@@ -313,7 +317,8 @@ public class ThirdActivity extends AppCompatActivity {
                                 String question6 = response.getJSONObject(0).get("q6").toString();
 
                                 if(!question1.equals("null")){
-                                    textViewOutput.setText("  " + question1 + " " + question2 + " will " + question3 + " in " + question4 + " " + question5 + " " + question6);
+                                    textViewOutputTitle.setVisibility(View.VISIBLE);
+                                    textViewOutput.setText("  -" + question1 + " " + question2 + " will " + question3 + " in " + question4 + " " + question5 + " " + question6);
                                     textViewOutput.setVisibility(View.VISIBLE);
                                 }
 
@@ -324,7 +329,8 @@ public class ThirdActivity extends AppCompatActivity {
                                 String question11 = response.getJSONObject(0).get("q11").toString();
 
                                 if(!question7.equals("null")){
-                                    textViewOutcome.setText("  " + question7 + " " + question8 + " will " + question9 + " " + question10 + " " + question11);
+                                    textViewOutcomeTitle.setVisibility(View.VISIBLE);
+                                    textViewOutcome.setText("  -" + question7 + " " + question8 + " will " + question9 + " " + question10 + " " + question11);
                                     textViewOutcome.setVisibility(View.VISIBLE);
                                 }
 
